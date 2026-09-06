@@ -1,1 +1,312 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="مبادرة النخبة — منصة تعليمية لدعم طلاب الشهادة السودانية."
+    >
+
+    <meta name="theme-color" content="#FAF9F6">
+
+    <title>مبادرة النخبة | منصة الشهادة السودانية</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         INTRO SCREEN
+    ====================================================== -->
+
+    <section
+        id="introScreen"
+        class="intro-screen"
+        aria-label="مقدمة الموقع"
+    >
+
+        <div class="intro-container">
+
+            <div class="intro-logo-wrapper">
+                <img
+                    src="assets/elite-logo.jpg"
+                    class="intro-logo"
+                    alt="شعار مبادرة النخبة"
+                >
+            </div>
+
+            <div class="intro-content">
+
+                <span class="intro-en">
+                    ELITE INITIATIVE
+                </span>
+
+                <h1>
+                    مبادرة النخبة
+                </h1>
+
+                <p>
+                    مساحتك التعليمية للاستعداد للشهادة السودانية.
+                </p>
+
+            </div>
+
+            <button
+                id="enterButton"
+                class="btn btn-primary intro-button"
+                type="button"
+            >
+                دخول المنصة
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN SITE
+    ====================================================== -->
+
+    <div id="site" class="site" hidden>
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <div class="container header-inner">
+
+                <a
+                    href="#home"
+                    class="brand"
+                    aria-label="مبادرة النخبة"
+                >
+
+                    <img
+                        src="assets/elite-logo.jpg"
+                        alt="مبادرة النخبة"
+                    >
+
+                </a>
+
+
+                <!-- Desktop Navigation -->
+                <nav
+                    class="desktop-nav"
+                    aria-label="التنقل الرئيسي"
+                >
+
+                    <a
+                        href="#home"
+                        data-route="home"
+                    >
+                        الرئيسية
+                    </a>
+
+                    <a
+                        href="#content"
+                        data-route="content"
+                    >
+                        المحتوى
+                    </a>
+
+                    <a
+                        href="#communication"
+                        data-route="communication"
+                    >
+                        التواصل
+                    </a>
+
+                    <a
+                        href="#supervisors"
+                        data-route="supervisors"
+                    >
+                        المشرفون
+                    </a>
+
+                    <a
+                        href="#about"
+                        data-route="about"
+                    >
+                        عن المبادرة
+                    </a>
+
+                </nav>
+
+
+                <!-- Mobile Menu Button -->
+                <button
+                    id="menuToggle"
+                    class="menu-toggle"
+                    type="button"
+                    aria-label="فتح القائمة"
+                    aria-expanded="false"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path d="M4 7h16"></path>
+                        <path d="M4 12h16"></path>
+                        <path d="M4 17h16"></path>
+                    </svg>
+
+                </button>
+
+            </div>
+
+
+            <!-- Mobile Navigation -->
+            <div
+                id="mobileMenu"
+                class="mobile-menu"
+                hidden
+            >
+
+                <a
+                    href="#home"
+                    data-route="home"
+                >
+                    الرئيسية
+                </a>
+
+                <a
+                    href="#content"
+                    data-route="content"
+                >
+                    المحتوى التعليمي
+                </a>
+
+                <a
+                    href="#communication"
+                    data-route="communication"
+                >
+                    التواصل
+                </a>
+
+                <a
+                    href="#supervisors"
+                    data-route="supervisors"
+                >
+                    المشرفون
+                </a>
+
+                <a
+                    href="#about"
+                    data-route="about"
+                >
+                    عن المبادرة
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- MAIN -->
+        <main id="main"></main>
+
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+
+            <div class="container footer-grid">
+
+                <div class="footer-brand">
+
+                    <img
+                        src="assets/elite-logo.jpg"
+                        class="footer-logo"
+                        alt="شعار مبادرة النخبة"
+                    >
+
+                    <h3>
+                        مبادرة النخبة
+                    </h3>
+
+                    <p>
+                        منصة تعليمية لدعم طلاب الشهادة السودانية.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        روابط
+                    </h4>
+
+                    <a href="#home">
+                        الرئيسية
+                    </a>
+
+                    <a href="#content">
+                        المحتوى التعليمي
+                    </a>
+
+                    <a href="#communication">
+                        التواصل
+                    </a>
+
+                    <a href="#about">
+                        عن المبادرة
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        مبادرة النخبة
+                    </h4>
+
+                    <p>
+                        تعليم منظم، وصول أسهل، وتجربة مصممة للطالب.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="container footer-bottom">
+
+                <span>
+                    © <span id="year"></span> مبادرة النخبة
+                </span>
+
+                <span>
+                    جميع الحقوق محفوظة
+                </span>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+
+</body>
+  </html>
