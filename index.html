@@ -1,1 +1,2121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>مبادرة النخبة | منصة تعليمية لطلاب الشهادة السودانية</title>
+
+  <meta
+    name="description"
+    content="مبادرة النخبة مبادرة تعليمية تهدف إلى مساندة طلاب الشهادة الثانوية وتوفير محتوى يساعدهم خلال رحلتهم الدراسية."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --surface: #ffffff;
+      --soft: #f1f0ec;
+      --ink: #111110;
+      --text: #292927;
+      --muted: #72716b;
+      --line: #dddcd7;
+      --line-dark: #b9b7af;
+
+      --max: 1160px;
+      --header: 66px;
+
+      --arabic: "IBM Plex Sans Arabic", sans-serif;
+      --english: "Inter", sans-serif;
+
+      --ease: cubic-bezier(.22,.7,.24,1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header) + 18px);
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--arabic);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    ::selection {
+      background: var(--ink);
+      color: white;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .num {
+      font-family: var(--english);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+
+    .line {
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--surface);
+      padding: 24px;
+
+      transition:
+        opacity .45s var(--ease),
+        visibility .45s var(--ease);
+    }
+
+    #intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-content {
+      width: min(380px, 100%);
+      text-align: center;
+    }
+
+    .intro-logo {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 26px;
+      object-fit: contain;
+
+      animation: introLogo .7s var(--ease) both;
+    }
+
+    .intro-line {
+      width: 34px;
+      height: 1px;
+      margin: 0 auto 22px;
+      background: var(--line-dark);
+
+      animation: introFade .6s .08s var(--ease) both;
+    }
+
+    .intro-title {
+      margin: 0 0 8px;
+
+      font-size: 1.5rem;
+      line-height: 1.3;
+      font-weight: 600;
+
+      animation: introFade .6s .14s var(--ease) both;
+    }
+
+    .intro-description {
+      margin: 0 0 30px;
+
+      color: var(--muted);
+      font-size: .92rem;
+
+      animation: introFade .6s .2s var(--ease) both;
+    }
+
+    .intro-button {
+      animation: introFade .6s .26s var(--ease) both;
+    }
+
+    @keyframes introLogo {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes introFade {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      min-height: 46px;
+      padding: 11px 22px;
+
+      border: 1px solid var(--ink);
+      border-radius: 2px;
+
+      background: var(--ink);
+      color: white;
+
+      text-decoration: none;
+      cursor: pointer;
+
+      font-size: .9rem;
+      font-weight: 500;
+
+      transition:
+        background .2s var(--ease),
+        color .2s var(--ease),
+        border-color .2s var(--ease),
+        transform .15s var(--ease);
+    }
+
+    .button:hover {
+      background: var(--text);
+    }
+
+    .button:active {
+      transform: translateY(1px);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line-dark);
+    }
+
+    .button.secondary:hover {
+      background: var(--surface);
+      border-color: var(--ink);
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+
+      height: var(--header);
+
+      background: rgba(250,249,246,.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-size: .92rem;
+      font-weight: 600;
+    }
+
+    .desktop-nav {
+      display: none;
+    }
+
+    .desktop-nav ul {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .desktop-nav a {
+      position: relative;
+
+      display: inline-flex;
+      align-items: baseline;
+      gap: 7px;
+
+      padding: 8px 0;
+
+      text-decoration: none;
+      color: var(--muted);
+
+      font-size: .86rem;
+
+      transition: color .2s var(--ease);
+    }
+
+    .desktop-nav a:hover {
+      color: var(--ink);
+    }
+
+    .nav-number {
+      color: #aaa8a0;
+      font-family: var(--english);
+      font-size: .66rem;
+    }
+
+    .desktop-nav a::after {
+      content: "";
+
+      position: absolute;
+      right: 0;
+      bottom: 1px;
+      left: 0;
+
+      height: 1px;
+
+      background: var(--ink);
+
+      transform: scaleX(0);
+      transition: transform .25s var(--ease);
+    }
+
+    .desktop-nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .menu-button {
+      width: 40px;
+      height: 40px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--line-dark);
+      border-radius: 2px;
+
+      background: transparent;
+      color: var(--ink);
+
+      cursor: pointer;
+    }
+
+    .menu-button svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 240;
+
+      background: rgba(17,17,16,.38);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity .3s var(--ease),
+        visibility .3s;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 300;
+
+      width: min(320px, 84vw);
+
+      display: flex;
+      flex-direction: column;
+
+      padding: 24px;
+
+      background: var(--surface);
+      border-left: 1px solid var(--line);
+
+      transform: translateX(100%);
+      transition: transform .35s var(--ease);
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 34px;
+    }
+
+    .mobile-menu-title {
+      font-size: .95rem;
+      font-weight: 600;
+    }
+
+    .close-button {
+      width: 38px;
+      height: 38px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--line-dark);
+      background: transparent;
+      border-radius: 2px;
+
+      cursor: pointer;
+    }
+
+    .mobile-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .mobile-links li {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mobile-links a {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+
+      padding: 18px 0;
+
+      text-decoration: none;
+
+      font-size: 1rem;
+
+      transition: padding-right .2s var(--ease);
+    }
+
+    .mobile-links a:hover {
+      padding-right: 8px;
+    }
+
+    .mobile-footer {
+      margin-top: auto;
+
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      padding: 76px 0 84px;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+    }
+
+    .hero-title {
+      margin: 0 0 20px;
+
+      max-width: 15ch;
+
+      font-size: clamp(2rem, 7vw, 3.55rem);
+      line-height: 1.2;
+      letter-spacing: -.035em;
+      font-weight: 600;
+    }
+
+    .hero-description {
+      max-width: 48ch;
+
+      margin: 0 0 30px;
+
+      color: var(--muted);
+
+      font-size: 1rem;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-mark {
+      position: relative;
+
+      width: min(100%, 330px);
+      aspect-ratio: 1 / 1;
+
+      margin-inline: auto;
+
+      border: 1px solid var(--line);
+      background: var(--soft);
+
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-mark::before {
+      content: "";
+
+      position: absolute;
+      inset: 18px;
+
+      border: 1px solid var(--line-dark);
+    }
+
+    .hero-mark-content {
+      position: relative;
+      z-index: 1;
+
+      text-align: center;
+    }
+
+    .hero-mark-number {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: var(--muted);
+      font-family: var(--english);
+      font-size: .72rem;
+      letter-spacing: .08em;
+    }
+
+    .hero-mark-title {
+      display: block;
+
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+
+    .hero-mark-subtitle {
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 7px;
+
+      font-size: clamp(1.4rem, 4vw, 1.9rem);
+      line-height: 1.3;
+      font-weight: 600;
+      letter-spacing: -.02em;
+    }
+
+    .section-heading p {
+      margin: 0;
+
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .section-number {
+      flex: none;
+
+      color: #aaa8a0;
+      font-family: var(--english);
+      font-size: .72rem;
+    }
+
+    /* =========================
+       QUICK ACCESS
+    ========================= */
+
+    .quick-list {
+      border-top: 1px solid var(--ink);
+    }
+
+    .quick-item {
+      width: 100%;
+
+      display: grid;
+      grid-template-columns: 35px 1fr 34px;
+      align-items: center;
+      gap: 12px;
+
+      padding: 21px 2px;
+
+      border: 0;
+      border-bottom: 1px solid var(--line);
+
+      background: transparent;
+
+      text-align: right;
+      cursor: pointer;
+
+      transition:
+        background .2s var(--ease),
+        padding-right .2s var(--ease);
+    }
+
+    .quick-item:hover {
+      padding-right: 10px;
+      background: var(--surface);
+    }
+
+    .quick-number {
+      color: #aaa8a0;
+      font-family: var(--english);
+      font-size: .72rem;
+    }
+
+    .quick-title {
+      display: block;
+
+      margin-bottom: 2px;
+
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .quick-description {
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .quick-arrow {
+      width: 30px;
+      height: 30px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--line-dark);
+      border-radius: 50%;
+
+      transition:
+        background .2s var(--ease),
+        color .2s var(--ease);
+    }
+
+    .quick-arrow svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .quick-item:hover .quick-arrow {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    .content-types {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      margin-bottom: 34px;
+    }
+
+    .content-type {
+      padding: 8px 15px;
+
+      border: 1px solid var(--line-dark);
+      border-radius: 20px;
+
+      background: transparent;
+      color: var(--text);
+
+      font-size: .8rem;
+
+      cursor: pointer;
+
+      transition:
+        background .2s var(--ease),
+        color .2s var(--ease),
+        border-color .2s var(--ease);
+    }
+
+    .content-type:hover {
+      border-color: var(--ink);
+    }
+
+    .content-type.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: white;
+    }
+
+    .subjects-title {
+      margin: 0 0 8px;
+
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .subjects {
+      display: grid;
+      grid-template-columns: 1fr;
+
+      border-top: 1px solid var(--line);
+    }
+
+    .subject {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      padding: 16px 2px;
+
+      border: 0;
+      border-bottom: 1px solid var(--line);
+
+      background: transparent;
+
+      text-align: right;
+      color: var(--text);
+
+      cursor: pointer;
+
+      transition:
+        background .2s var(--ease),
+        padding-right .2s var(--ease);
+    }
+
+    .subject:hover {
+      padding-right: 9px;
+      background: var(--surface);
+    }
+
+    .subject-number {
+      color: #aaa8a0;
+      font-family: var(--english);
+      font-size: .68rem;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact-featured {
+      display: grid;
+      grid-template-columns: 1fr;
+
+      border: 1px solid var(--line);
+    }
+
+    .contact-feature {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+
+      min-height: 125px;
+
+      padding: 25px;
+
+      background: var(--surface);
+
+      text-decoration: none;
+
+      transition: background .2s var(--ease);
+    }
+
+    .contact-feature + .contact-feature {
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-feature:hover {
+      background: var(--soft);
+    }
+
+    .contact-feature-name {
+      display: block;
+
+      margin-bottom: 3px;
+
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .contact-feature-description {
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .contact-arrow {
+      width: 32px;
+      height: 32px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--line-dark);
+      border-radius: 50%;
+
+      flex: none;
+    }
+
+    .contact-arrow svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .additional-title {
+      margin: 34px 0 12px;
+
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 500;
+    }
+
+    .additional-links {
+      display: grid;
+      grid-template-columns: 1fr;
+
+      border-top: 1px solid var(--line);
+    }
+
+    .additional-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+
+      padding: 17px 2px;
+
+      border-bottom: 1px solid var(--line);
+
+      text-decoration: none;
+
+      transition:
+        background .2s var(--ease),
+        padding-right .2s var(--ease);
+    }
+
+    .additional-link:hover {
+      padding-right: 9px;
+      background: var(--surface);
+    }
+
+    .additional-link strong {
+      display: block;
+
+      margin-bottom: 2px;
+
+      font-size: .86rem;
+      font-weight: 600;
+    }
+
+    .additional-link span {
+      color: var(--muted);
+      font-size: .73rem;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-content {
+      max-width: 720px;
+
+      padding-right: 22px;
+
+      border-right: 1px solid var(--ink);
+    }
+
+    .about-content p {
+      margin: 0;
+
+      color: var(--text);
+
+      font-size: clamp(1rem, 3vw, 1.22rem);
+      line-height: 1.95;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 42px 0 24px;
+
+      background: var(--ink);
+      color: white;
+    }
+
+    .footer-main {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+
+      padding-bottom: 28px;
+    }
+
+    .footer-brand {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-description {
+      margin-top: 3px;
+
+      color: #aaa9a3;
+      font-size: .78rem;
+    }
+
+    .back-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 8px 13px;
+
+      border: 1px solid #44443f;
+      border-radius: 2px;
+
+      background: transparent;
+      color: white;
+
+      cursor: pointer;
+
+      font-size: .75rem;
+    }
+
+    .back-top:hover {
+      background: #242421;
+    }
+
+    .footer-bottom {
+      padding-top: 18px;
+
+      border-top: 1px solid #343430;
+
+      color: #888780;
+
+      font-family: var(--english);
+      font-size: .68rem;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (min-width: 620px) {
+
+      .subjects {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .subject:nth-child(odd) {
+        border-left: 1px solid var(--line);
+      }
+
+      .contact-featured {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-feature + .contact-feature {
+        border-top: 0;
+        border-right: 1px solid var(--line);
+      }
+
+      .additional-links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .additional-link:nth-child(odd) {
+        border-left: 1px solid var(--line);
+      }
+    }
+
+    @media (min-width: 860px) {
+
+      .container {
+        width: min(var(--max), calc(100% - 64px));
+      }
+
+      .desktop-nav {
+        display: block;
+      }
+
+      .menu-button {
+        display: none;
+      }
+
+      .hero {
+        padding: 95px 0 105px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.15fr .85fr;
+        gap: 80px;
+      }
+
+      .hero-mark {
+        width: 340px;
+      }
+
+      .section {
+        padding: 88px 0;
+      }
+
+      .subjects {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .subject:nth-child(odd) {
+        border-left: 1px solid var(--line);
+      }
+
+      .subject:nth-child(3n) {
+        border-left: 0;
+      }
+
+      .additional-links {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .additional-link:nth-child(odd) {
+        border-left: 1px solid var(--line);
+      }
+
+      .additional-link:nth-child(3n) {
+        border-left: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .container {
+        width: min(100% - 30px, var(--max));
+      }
+
+      .hero {
+        padding: 54px 0 62px;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-mark {
+        width: 250px;
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+
+      .section-heading {
+        margin-bottom: 27px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .footer-main {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       INTRO
+  ========================= -->
+
+  <div id="intro" role="dialog" aria-modal="true" aria-labelledby="intro-title">
+
+    <div class="intro-content">
+
+      <img
+        src="assets/elite-logo.jpg"
+        alt="شعار مبادرة النخبة"
+        class="intro-logo"
+      >
+
+      <div class="intro-line"></div>
+
+      <h1 id="intro-title" class="intro-title">
+        مبادرة النخبة
+      </h1>
+
+      <p class="intro-description">
+        مبادرة تعليمية تهدف إلى مساندة طلاب الشهادة الثانوية.
+      </p>
+
+      <button
+        class="button intro-button"
+        id="start-button"
+        type="button"
+      >
+        ابدأ الآن
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5"/>
+          <path d="M11 18l-6-6 6-6"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+
+  <!-- =========================
+       MOBILE OVERLAY
+  ========================= -->
+
+  <div class="overlay" id="overlay"></div>
+
+
+  <!-- =========================
+       MOBILE MENU
+  ========================= -->
+
+  <aside
+    class="mobile-menu"
+    id="mobile-menu"
+    aria-label="القائمة الرئيسية"
+    aria-hidden="true"
+  >
+
+    <div class="mobile-menu-header">
+
+      <span class="mobile-menu-title">
+        مبادرة النخبة
+      </span>
+
+      <button
+        class="close-button"
+        id="close-menu"
+        type="button"
+        aria-label="إغلاق القائمة"
+      >
+        <svg width="17" height="17" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round">
+          <path d="M18 6 6 18"/>
+          <path d="M6 6l12 12"/>
+        </svg>
+      </button>
+
+    </div>
+
+    <ul class="mobile-links">
+
+      <li>
+        <a href="#home">
+          <span class="nav-number">01</span>
+          الرئيسية
+        </a>
+      </li>
+
+      <li>
+        <a href="#content">
+          <span class="nav-number">02</span>
+          المحتوى
+        </a>
+      </li>
+
+      <li>
+        <a href="#contact">
+          <span class="nav-number">03</span>
+          التواصل
+        </a>
+      </li>
+
+      <li>
+        <a href="#about">
+          <span class="nav-number">04</span>
+          عن المبادرة
+        </a>
+      </li>
+
+    </ul>
+
+    <div class="mobile-footer">
+      مساندة تعليمية لطلاب الشهادة الثانوية.
+    </div>
+
+  </aside>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header class="site-header">
+
+    <div class="container header-inner">
+
+      <a href="#home" class="brand">
+
+        <img
+          src="assets/elite-logo.jpg"
+          alt="شعار مبادرة النخبة"
+          class="brand-logo"
+        >
+
+        <span class="brand-name">
+          مبادرة النخبة
+        </span>
+
+      </a>
+
+
+      <nav class="desktop-nav" aria-label="القائمة الرئيسية">
+
+        <ul>
+
+          <li>
+            <a href="#home">
+              <span class="nav-number">01</span>
+              الرئيسية
+            </a>
+          </li>
+
+          <li>
+            <a href="#content">
+              <span class="nav-number">02</span>
+              المحتوى
+            </a>
+          </li>
+
+          <li>
+            <a href="#contact">
+              <span class="nav-number">03</span>
+              التواصل
+            </a>
+          </li>
+
+          <li>
+            <a href="#about">
+              <span class="nav-number">04</span>
+              عن المبادرة
+            </a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+      <button
+        class="menu-button"
+        id="open-menu"
+        type="button"
+        aria-label="فتح القائمة"
+        aria-expanded="false"
+      >
+        <svg viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round">
+
+          <path d="M4 7h16"/>
+          <path d="M4 12h16"/>
+          <path d="M4 17h16"/>
+
+        </svg>
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <main id="home">
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero">
+
+      <div class="container hero-grid">
+
+        <div class="hero-copy">
+
+          <span class="eyebrow">
+            مبادرة النخبة
+          </span>
+
+          <h1 class="hero-title">
+            طريقك الدراسي، أوضح من البداية.
+          </h1>
+
+          <p class="hero-description">
+            محتوى تعليمي منظم يساعد طلاب الشهادة السودانية
+            على المذاكرة والمراجعة والاستعداد بصورة أبسط.
+          </p>
+
+          <div class="hero-actions">
+
+            <a href="#content" class="button">
+              استكشف المحتوى
+            </a>
+
+            <a href="#contact" class="button secondary">
+              تواصل معنا
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-mark" aria-hidden="true">
+
+          <div class="hero-mark-content">
+
+            <span class="hero-mark-number">
+              2026
+            </span>
+
+            <strong class="hero-mark-title">
+              النخبة
+            </strong>
+
+            <span class="hero-mark-subtitle">
+              للتعليم والمساندة
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div class="line"></div>
+
+
+    <!-- =========================
+         QUICK ACCESS
+    ========================= -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>ابدأ من هنا</h2>
+            <p>الوصول السريع إلى أهم أقسام المنصة.</p>
+          </div>
+
+          <span class="section-number">
+            01
+          </span>
+
+        </div>
+
+
+        <div class="quick-list">
+
+          <button class="quick-item" data-type="الكتب">
+
+            <span class="quick-number">01</span>
+
+            <span>
+              <strong class="quick-title">الكتب</strong>
+              <span class="quick-description">
+                مراجع دراسية لكل مادة
+              </span>
+            </span>
+
+            <span class="quick-arrow">
+              <svg viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M19 12H5"/>
+                <path d="m11 18-6-6 6-6"/>
+              </svg>
+            </span>
+
+          </button>
+
+
+          <button class="quick-item" data-type="الامتحانات">
+
+            <span class="quick-number">02</span>
+
+            <span>
+              <strong class="quick-title">الامتحانات</strong>
+              <span class="quick-description">
+                امتحانات الشهادة السودانية
+              </span>
+            </span>
+
+            <span class="quick-arrow">
+              <svg viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M19 12H5"/>
+                <path d="m11 18-6-6 6-6"/>
+              </svg>
+            </span>
+
+          </button>
+
+
+          <button class="quick-item" data-type="حلول الامتحانات">
+
+            <span class="quick-number">03</span>
+
+            <span>
+              <strong class="quick-title">حلول الامتحانات</strong>
+              <span class="quick-description">
+                حلول للمراجعة والتأكد من الإجابات
+              </span>
+            </span>
+
+            <span class="quick-arrow">
+              <svg viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M19 12H5"/>
+                <path d="m11 18-6-6 6-6"/>
+              </svg>
+            </span>
+
+          </button>
+
+
+          <button class="quick-item" data-type="المذكرات والملخصات">
+
+            <span class="quick-number">04</span>
+
+            <span>
+              <strong class="quick-title">المذكرات والملخصات</strong>
+              <span class="quick-description">
+                مواد مختصرة للمراجعة
+              </span>
+            </span>
+
+            <span class="quick-arrow">
+              <svg viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M19 12H5"/>
+                <path d="m11 18-6-6 6-6"/>
+              </svg>
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div class="line"></div>
+
+
+    <!-- =========================
+         CONTENT
+    ========================= -->
+
+    <section class="section" id="content">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>المحتوى التعليمي</h2>
+            <p>اختر نوع المحتوى ثم اختر المادة.</p>
+          </div>
+
+          <span class="section-number">
+            02
+          </span>
+
+        </div>
+
+
+        <div
+          class="content-types"
+          role="group"
+          aria-label="نوع المحتوى"
+        >
+
+          <button
+            class="content-type active"
+            type="button"
+            data-type="الكتب"
+            aria-pressed="true"
+          >
+            الكتب
+          </button>
+
+          <button
+            class="content-type"
+            type="button"
+            data-type="الامتحانات"
+            aria-pressed="false"
+          >
+            الامتحانات
+          </button>
+
+          <button
+            class="content-type"
+            type="button"
+            data-type="حلول الامتحانات"
+            aria-pressed="false"
+          >
+            حلول الامتحانات
+          </button>
+
+          <button
+            class="content-type"
+            type="button"
+            data-type="المذكرات والملخصات"
+            aria-pressed="false"
+          >
+            المذكرات والملخصات
+          </button>
+
+        </div>
+
+
+        <p class="subjects-title">
+          المواد الدراسية
+        </p>
+
+
+        <div class="subjects">
+
+          <button class="subject" type="button">
+            <span class="subject-number">01</span>
+            فيزياء
+          </button>
+
+          <button class="subject" type="button">
+            <span class="subject-number">02</span>
+            رياضيات
+          </button>
+
+          <button class="subject" type="button">
+            <span class="subject-number">03</span>
+            اللغة العربية
+          </button>
+
+          <button class="subject" type="button">
+            <span class="subject-number">04</span>
+            اللغة الإنجليزية
+          </button>
+
+          <button class="subject" type="button">
+            <span class="subject-number">05</span>
+            كيمياء
+          </button>
+
+          <button class="subject" type="button">
+            <span class="subject-number">06</span>
+            أحياء
+          </button>
+
+          <button class="subject" type="button">
+            <span class="subject-number">07</span>
+            هندسية
+          </button>
+
+          <button class="subject" type="button">
+            <span class="subject-number">08</span>
+            تربية إسلامية
+          </button>
+
+          <button class="subject" type="button">
+            <span class="subject-number">09</span>
+            حاسوب
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div class="line"></div>
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section class="section" id="contact">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>تواصل معنا</h2>
+            <p>تابع المبادرة وكن قريباً من كل جديد.</p>
+          </div>
+
+          <span class="section-number">
+            03
+          </span>
+
+        </div>
+
+
+        <div class="contact-featured">
+
+          <a
+            class="contact-feature"
+            href="https://t.me/nokhbanews889"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <span>
+              <strong class="contact-feature-name">
+                قناة الأخبار
+              </strong>
+
+              <span class="contact-feature-description">
+                آخر التحديثات والإعلانات
+              </span>
+            </span>
+
+            <span class="contact-arrow">
+              <svg viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round">
+                <path d="M19 12H5"/>
+                <path d="m11 18-6-6 6-6"/>
+              </svg>
+            </span>
+
+          </a>
+
+
+          <a
+            class="contact-feature"
+            href="https://t.me/ounalnukhba"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <span>
+              <strong class="contact-feature-name">
+                عون
+              </strong>
+
+              <span class="contact-feature-description">
+                للدعم والتحفيز
+              </span>
+            </span>
+
+            <span class="contact-arrow">
+              <svg viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round">
+                <path d="M19 12H5"/>
+                <path d="m11 18-6-6 6-6"/>
+              </svg>
+            </span>
+
+          </a>
+
+        </div>
+
+
+        <p class="additional-title">
+          قنوات إضافية
+        </p>
+
+
+        <div class="additional-links">
+
+          <a
+            class="additional-link"
+            href="https://t.me/Sualna"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <strong>سؤالنا</strong>
+              <span>للاستفسارات والأسئلة</span>
+            </span>
+
+            <span class="nav-number">↗</span>
+          </a>
+
+
+          <a
+            class="additional-link"
+            href="https://t.me/+q0Ws0zZsOL80ODY0"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <strong>مجموعة تيليجرام</strong>
+              <span>نقاش وتفاعل الطلاب</span>
+            </span>
+
+            <span class="nav-number">↗</span>
+          </a>
+
+
+          <a
+            class="additional-link"
+            href="https://chat.whatsapp.com/IABH3Uh4hppEsv1sbb0ie5?s=cl&p=a&mlu=4&ilr=4"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <strong>مجموعة واتساب</strong>
+              <span>تواصل مباشر</span>
+            </span>
+
+            <span class="nav-number">↗</span>
+          </a>
+
+
+          <a
+            class="additional-link"
+            href="https://t.me/Elitee_eBot"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <strong>Bot المبادرة</strong>
+              <span>خدمة تلقائية</span>
+            </span>
+
+            <span class="nav-number">↗</span>
+          </a>
+
+
+          <a
+            class="additional-link"
+            href="https://t.me/elite_initiative_files"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <strong>قناة الملفات</strong>
+              <span>أرشيف ملفات المبادرة</span>
+            </span>
+
+            <span class="nav-number">↗</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div class="line"></div>
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section class="section" id="about">
+
+      <div class="container">
+
+        <div class="about-content">
+
+          <span class="eyebrow">
+            عن مبادرة النخبة
+          </span>
+
+          <p>
+            مبادرة النخبة هي مبادرة تعليمية أطلقها مجموعة من طلاب وطالبات
+            الدفعات السابقة، بهدف مساندة طلاب الشهادة الثانوية، وتقديم
+            محتوى تعليمي يساعدهم خلال رحلتهم الدراسية.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-main">
+
+        <div>
+          <div class="footer-brand">
+            مبادرة النخبة
+          </div>
+
+          <div class="footer-description">
+            مساندة تعليمية لطلاب الشهادة الثانوية.
+          </div>
+        </div>
+
+
+        <button
+          class="back-top"
+          id="back-top"
+          type="button"
+        >
+          العودة للأعلى
+
+          <svg width="12" height="12" viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 19V5"/>
+            <path d="m5 12 7-7 7 7"/>
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <div class="footer-bottom">
+        © <span id="year"></span> Elite Initiative
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+    (() => {
+      "use strict";
+
+      const intro = document.getElementById("intro");
+      const startButton = document.getElementById("start-button");
+
+      const openMenuButton = document.getElementById("open-menu");
+      const closeMenuButton = document.getElementById("close-menu");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const overlay = document.getElementById("overlay");
+
+      const backTop = document.getElementById("back-top");
+
+      const chips = document.querySelectorAll(".content-type");
+      const quickItems = document.querySelectorAll(".quick-item");
+
+      const year = document.getElementById("year");
+
+      /* =========================
+         INTRO
+      ========================= */
+
+      const INTRO_KEY = "elite_intro_seen";
+
+      function closeIntro() {
+        intro.classList.add("hidden");
+        document.body.classList.remove("menu-open");
+
+        try {
+          sessionStorage.setItem(INTRO_KEY, "1");
+        } catch (_) {}
+      }
+
+      try {
+        if (sessionStorage.getItem(INTRO_KEY) === "1") {
+          intro.classList.add("hidden");
+        }
+      } catch (_) {}
+
+      startButton.addEventListener("click", closeIntro);
+
+
+      /* =========================
+         MOBILE MENU
+      ========================= */
+
+      function openMenu() {
+        mobileMenu.classList.add("active");
+        overlay.classList.add("active");
+
+        mobileMenu.setAttribute("aria-hidden", "false");
+        openMenuButton.setAttribute("aria-expanded", "true");
+
+        document.body.classList.add("menu-open");
+
+        closeMenuButton.focus();
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.remove("active");
+        overlay.classList.remove("active");
+
+        mobileMenu.setAttribute("aria-hidden", "true");
+        openMenuButton.setAttribute("aria-expanded", "false");
+
+        document.body.classList.remove("menu-open");
+      }
+
+      openMenuButton.addEventListener("click", openMenu);
+      closeMenuButton.addEventListener("click", closeMenu);
+      overlay.addEventListener("click", closeMenu);
+
+
+      document.querySelectorAll(".mobile-links a").forEach(link => {
+        link.addEventListener("click", closeMenu);
+      });
+
+
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+          if (mobileMenu.classList.contains("active")) {
+            closeMenu();
+          }
+        }
+      });
+
+
+      /* =========================
+         CONTENT TYPE
+      ========================= */
+
+      function selectType(type) {
+        chips.forEach(chip => {
+          const active = chip.dataset.type === type;
+
+          chip.classList.toggle("active", active);
+          chip.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+      }
+
+      chips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          selectType(chip.dataset.type);
+        });
+      });
+
+
+      /* =========================
+         QUICK ACCESS
+      ========================= */
+
+      quickItems.forEach(item => {
+
+        item.addEventListener("click", () => {
+
+          const type = item.dataset.type;
+
+          selectType(type);
+
+          document
+            .getElementById("content")
+            .scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+        });
+
+      });
+
+
+      /* =========================
+         BACK TO TOP
+      ========================= */
+
+      backTop.addEventListener("click", () => {
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      });
+
+
+      /* =========================
+         YEAR
+      ========================= */
+
+      year.textContent = new Date().getFullYear();
+
+    })();
+  </script>
+
+</body>
+  </html>
